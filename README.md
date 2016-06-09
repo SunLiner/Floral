@@ -1,7 +1,7 @@
 # Floral
 
 ## 项目blog地址
-<a>简书blog地址</a>
+<a href="http://www.jianshu.com/p/2893be49c50e">简书blog地址</a>
 
 ## 项目环境
 编译器 : Xcode7.2
