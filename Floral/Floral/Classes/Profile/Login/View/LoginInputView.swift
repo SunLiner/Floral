@@ -52,8 +52,10 @@ class LoginInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    static var g_self : LoginInputView?
     private func setup()
     {
+        LoginInputView.g_self = self
         // 监听国家的改变
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginInputView.changeCounty(_:)), name: ChangeCountyNotifyName, object: nil)
         
@@ -124,7 +126,8 @@ class LoginInputView: UIView {
     }()
     
     private lazy var safeBtn : UIButton = {
-       let btn = UIButton(title: "获取验证码", imageName: nil, target: nil, selector: nil, font: defaultFont14, titleColor: UIColor.lightGrayColor())
+       let btn = UIButton(title: "获取验证码", imageName: nil, target: g_self!, selector: #selector(LoginInputView.clickSafeNum(_:)), font: defaultFont14, titleColor: UIColor.blackColor())
+        btn.setTitleColor(UIColor.lightGrayColor(), forState:.Selected)
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor.lightGrayColor().CGColor
         return btn
@@ -139,4 +142,45 @@ class LoginInputView: UIView {
         let county = noti.userInfo!["country"] as! String
         locationBtn.setTitle(county, forState: .Normal)
     }
+    
+    /// 点击"发送验证码"按钮
+    func clickSafeNum(btn: UIButton) {
+        var seconds = 10 //倒计时时间
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(timer,dispatch_walltime(nil, 0),1 * NSEC_PER_SEC, 0); //每秒执行
+        dispatch_source_set_event_handler(timer) { 
+            if(seconds<=0){ //倒计时结束，关闭
+                dispatch_source_cancel(timer);
+                dispatch_async(dispatch_get_main_queue(), {
+                    //设置界面的按钮显示 根据自己需求设置
+                    btn.setTitleColor(UIColor.blackColor(), forState:.Normal)
+                    btn.setTitle("获取验证码", forState:.Normal)
+                    btn.titleLabel?.font = defaultFont14
+                    btn.userInteractionEnabled = true
+                    });
+            }else{
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    UIView.beginAnimations(nil, context: nil)
+                    UIView.setAnimationDuration(1)
+                })
+                dispatch_async(dispatch_get_main_queue(), {
+                    //设置界面的按钮显示 根据自己需求设置
+                    UIView.beginAnimations(nil, context: nil)
+                    UIView.setAnimationDuration(1)
+                    btn.setTitleColor(UIColor.orangeColor(), forState:.Normal)
+                    btn.setTitle("\(seconds)秒后重新发送", forState:.Normal)
+                    btn.titleLabel?.font = UIFont.systemFontOfSize(11)
+                    UIView.commitAnimations()
+                    btn.userInteractionEnabled = false
+                
+                })
+               seconds -= 1
+
+        }
+            
+    }
+    dispatch_resume(timer)
+}
 }

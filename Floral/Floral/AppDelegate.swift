@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // 方便测试: 每次登录的时候, 都把登录状态设置false
-        LoginHelper.sharedInstance.setLoginStatus(false)
+//        LoginHelper.sharedInstance.setLoginStatus(false)
         
         // 设置全局的UINavigationBar属性
         let bar = UINavigationBar.appearance()

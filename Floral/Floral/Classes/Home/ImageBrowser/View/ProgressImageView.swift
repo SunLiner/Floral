@@ -76,8 +76,6 @@ private class ProgressView: UIView {
         // 创建路径
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         path.lineWidth = 3
-        // 和圆心连接一条直线
-//        path.addLineToPoint(center)
         
         // 设置填充颜色
         UIColor.whiteColor().setStroke()

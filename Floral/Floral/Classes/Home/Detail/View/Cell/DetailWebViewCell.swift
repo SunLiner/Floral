@@ -82,10 +82,6 @@ class DetailWebViewCell: UITableViewCell, UIWebViewDelegate {
         if (components.count >= 1) {
             //判断是不是图片点击
             if (components[0] == "imageclick") {
-//                let alert = UIAlertView.init(title: "提示", message: components.last, delegate: nil, cancelButtonTitle: "好的")
-//                alert.show()
-                
-                // , NSURL(string: components.last!)!, NSURL(string: components.last!)!
                 parentViewController?.presentViewController(ImageBrowserViewController(urls: [NSURL(string: components.last!)!], index: NSIndexPath(forItem: 0, inSection: 0)), animated: true, completion: nil)
                 return false;
             }
@@ -100,7 +96,7 @@ class DetailWebViewCell: UITableViewCell, UIWebViewDelegate {
         webView.stringByEvaluatingJavaScriptFromString(try! String(contentsOfURL: NSBundle.mainBundle().URLForResource("image", withExtension: "js")!, encoding: NSUTF8StringEncoding))
         
         // 给图片绑定点击事件
-      webView.stringByEvaluatingJavaScriptFromString("setImageClick()")
+        webView.stringByEvaluatingJavaScriptFromString("setImageClick()")
         
         // 只需要获得scrollView.contentSize一次即可
         if !isFinishLoad && webView.scrollView.contentSize.height > 0{

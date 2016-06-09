@@ -234,7 +234,6 @@ class HomeTableViewController: UITableViewController, BlurViewDelegate {
     
     private lazy var blurView : BlurView = {
         let blur = BlurView(effect: UIBlurEffect(style: .Light))
-//        blur.alpha = 0.90
         blur.categories = self.categories
         blur.delegate = self
         return blur
