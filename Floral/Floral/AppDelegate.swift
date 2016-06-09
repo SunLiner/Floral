@@ -4,7 +4,11 @@
 //
 //  Created by ALin on 16/4/25.
 //  Copyright © 2016年 ALin. All rights reserved.
-//
+
+
+//  github : https://github.com/SunLiner/Floral
+//  blog : http://www.jianshu.com/p/2893be49c50e
+
 
 import UIKit
 
