@@ -4,9 +4,9 @@
 <a href="http://www.jianshu.com/p/2893be49c50e">简书blog地址</a>
 
 ## 项目环境
-编译器 : Xcode7.2
+编译器 : Xcode7.3及以上
 
-语言 : Swift2.1 
+语言 : Swift2.2
 
 整个项目都是采用`纯代码`开发模式
 
