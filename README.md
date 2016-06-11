@@ -1,5 +1,7 @@
 # Floral
 
+## 直接下载/clone, 双击 `Floral.xcworkspace`打开即可. 
+
 ## 项目blog地址
 <a href="http://www.jianshu.com/p/2893be49c50e">简书blog地址</a>
 
