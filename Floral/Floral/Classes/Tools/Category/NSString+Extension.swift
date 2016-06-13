@@ -12,7 +12,7 @@ extension String
 {
     /// 判断是否是手机号
     func isPhoneNumber() -> Bool {
-        let pattern = "^1[34589]\\d{9}$"
+        let pattern = "^1[345789]\\d{9}$"
         return NSPredicate.init(format: "SELF MATCHES %@", pattern).evaluateWithObject(self)
     }
     
