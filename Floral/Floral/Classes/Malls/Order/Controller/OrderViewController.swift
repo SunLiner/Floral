@@ -45,9 +45,9 @@ class OrderViewController: UITableViewController {
     // MARK: - life circle
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        getOlderInfo()
+        
         setup()
+        getOlderInfo()
         
     }
     override func viewWillDisappear(animated: Bool) {
@@ -86,7 +86,7 @@ class OrderViewController: UITableViewController {
         navigationItem.title = "确认订单"
         
         view.backgroundColor = UIColor(gray: 241)
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView() 设置tableFooterView后会出发reloadData, 这时候registerClass还没执行，在cellForRowAtIndexPath中导致Crash
         tableView.separatorStyle = .None
         tableView.registerClass(OlderViewCell.self, forCellReuseIdentifier: OrderCellReuseIdentifier)
         tableView.registerClass(TakeAddressViewCell.self, forCellReuseIdentifier: AddressCellReuseIdentifier)
@@ -95,7 +95,7 @@ class OrderViewController: UITableViewController {
         tableView.registerClass(TotalInfoViewCell.self, forCellReuseIdentifier: InfoCellReuseIdentifier)
         
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
-        
+        tableView.tableFooterView = UIView()
         // 添加通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrderViewController.buyNumChange(_:)), name: BuyNumNotifyName, object: nil)
         
