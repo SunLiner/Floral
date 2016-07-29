@@ -35,5 +35,14 @@ class ADS: NSObject {
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         
     }
+    
+    override func setValue(value: AnyObject?, forKey key: String) {
+        if key == "fnOrder" { // 解决商城的bug
+            if value == nil {
+                return
+            }
+        }
+        super.setValue(value, forKey: key)
+    }
 
 }
